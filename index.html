@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="icon" href="logo.png" type="image/png">
+    <title>Jadwal Naufal 🌸</title>
+    <link rel="stylesheet" href="style.css?v=10.0">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="manifest" href="manifest.json">
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('./sw.js')
+                .then(() => console.log("Service Worker Registered! ✨"));
+        }
+    </script>
+</head>
+<body id="main-body">
+    <div class="cloud-wrapper">
+        <div class="cloud cloud1">☁️</div>
+        <div class="cloud cloud2">☁️</div>
+        <div class="cloud cloud3">☁️</div>
+    </div>
+    
+    <div id="rain-container"></div>
+    <div id="night-decor"></div>
+    <div id="click-canvas"></div>
+
+    <div class="header">
+    <h1>Jadwal Kuliah 🌸</h1>
+    <p id="dynamic-greeting" class="subtitle">Halo Naufal! ✨</p>
+    
+    <div id="weather-label" class="weather-status">Syncing Bandung Weather...</div>
+
+    <div class="pwa-controls" style="margin: 15px 0; display: flex; justify-content: center; gap: 10px;">
+        <button id="update-app" class="btn-player-sub" style="min-height: 35px; font-size: 0.7rem; flex: none; padding: 0 15px;">Update 🔄</button>
+        <button id="enable-notifications" class="btn-player-sub" style="min-height: 35px; font-size: 0.7rem; flex: none; padding: 0 15px;">Notify 🔔</button>
+    </div>
+    
+    <div class="prayer-times-container">
+        <div id="prayer-list" class="prayer-bar">
+            <span class="prayer-loading">Memuat jadwal shalat...</span>
+        </div>
+        <div id="prayer-countdown"></div>
+        <div id="class-countdown" style="font-size: 0.65rem; color: var(--blue-soft); font-weight: 700; margin-top: 5px; text-align: center;"></div>
+    </div>
+
+    <div class="deadline-container">
+        <div class="deadline-title">
+            📌 Tugas Terdekat 
+            <span id="next-deadline-timer" style="font-size: 0.65rem; color: #ff69b4; display: block; margin-top: 4px; font-weight: 700;"></span>
+        </div>
+        <div id="deadline-list">
+            <p style="font-size:0.6rem; color:#a1b8cc;">Memuat tugas...</p>
+        </div>
+    </div>
+    
+    <div id="gacha-space" class="gacha-text">Click the icon above for your fortune!</div>
+</div>
+
+    <div class="player-card">
+        <div class="music-main-controls">
+            <button id="toggle-music" class="btn-player-main">Play Lo-Fi 🎧</button>
+            <button id="next-track" class="btn-player-sub">Next ⏭️</button>
+        </div>
+
+        <div class="music-progress-row">
+            <span id="current-time" class="time-stamp">0:00</span>
+            <input type="range" id="progress-bar" value="0" min="0" max="100" class="seeker">
+            <span id="total-duration" class="time-stamp">0:00</span>
+        </div>
+
+        <div class="volume-row">
+            <span>🔈</span>
+            <input type="range" id="volume-slider" min="0" max="1" step="0.1" value="0.2" class="vol-slider">
+            <span>🔊</span>
+        </div>
+    </div>
+
+    <div class="focus-section">
+        <button id="toggle-focus" class="btn-focus-mode">✨</button>
+    </div>
+
+    <div id="schedule-container" class="schedule-grid"></div>
+
+    <footer class="footer">
+        <p>Made with 💖 by Geisha</p>
+        <p class="footer-sub">S1 Informatika - Telkom University</p>
+        <div class="footer-spacer"></div>
+    </footer>
+
+    <script src="./script.js?v=10.0"></script>
+</body>
+</html>
