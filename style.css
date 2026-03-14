@@ -258,9 +258,38 @@ body {
 .detail { display: flex; justify-content: space-between; font-size: 0.75rem; margin-top: 8px; border-top: 1px dashed rgba(0,0,0,0.1); padding-top: 8px; }
 .label-msg { position: absolute; top: 10px; right: 10px; font-size: 0.55rem; font-weight: 800; color: var(--pink-dark); background: white; padding: 2px 6px; border-radius: 5px; border: 1px solid var(--pink-soft); }
 
-/* 4. MODES & ATMOSPHERE */
-body.night-mode { background: linear-gradient(rgba(20, 24, 82, 0.92), rgba(10, 10, 30, 0.95)), url('./karakter.png') fixed center/cover; color: #f1f7fa; }
-body.night-mode .class-card { background: rgba(255, 255, 255, 0.1); border-color: rgba(255,255,255,0.1); }
+/* 4. MODES & ATMOSPHERE - FINAL POLISH */
+body.night-mode { 
+    background: linear-gradient(rgba(20, 24, 82, 0.95), rgba(10, 10, 30, 0.98)), url('./karakter.png') fixed center/cover; 
+    color: #f1f7fa; 
+}
+
+/* Memastikan kartu tugas & jadwal tetap nyaman dibaca */
+body.night-mode .deadline-item,
+body.night-mode .class-card {
+    background: rgba(255, 255, 255, 0.9) !important;
+    color: var(--blue-main) !important;
+}
+
+/* Memperbaiki bar waktu shalat agar tidak pudar di malam hari */
+body.night-mode .prayer-bar {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 182, 193, 0.3);
+}
+
+body.night-mode .prayer-item b {
+    color: #a1b8cc; /* Biru muda pastel agar kontras dengan background gelap */
+}
+
+/* Tombol Update & Notify biar lebih pop-out */
+body.night-mode .btn-player-sub, 
+body.night-mode .subtitle,
+body.night-mode .weather-status {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #fff;
+}
+
 body.rainy-mood { filter: saturate(0.7) contrast(1.1) brightness(0.9); background-color: #d1d9e6; }
 body.sunny-mood { filter: saturate(1.15) brightness(1.05); }
 
