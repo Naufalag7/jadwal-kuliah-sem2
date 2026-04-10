@@ -1,11 +1,10 @@
 const CONFIG = {
-    name: "Naufal",
     quotes: [
         "Semangat terus kodingnya, Naufal! 🪻",
         "Make it happen, make it count. 🔥",
-        "One semicolon at a time. You've got this! 💻",
-        "Kalkulus and Alpro? Easy work for you. ✨",
-        "Building the future, one line of code at a time. 🚀"
+        "One semicolon at a time. ✨",
+        "Zero bugs, zero excuses. 🚀",
+        "Laily is rooting for you! ❤️"
     ],
     schedule: [
         { day: 'Senin', code: 'CAK1LAB3', subject: 'KALKULUS LANJUT', time: '10:30 - 12:30', room: 'KU3.09.17' },
@@ -22,35 +21,29 @@ const CONFIG = {
 };
 
 function init() {
-    // 1. Set Random Quote
-    const randomQuote = CONFIG.quotes[Math.floor(Math.random() * CONFIG.quotes.length)];
+    // Quote random
     const quoteEl = document.getElementById('quote-display');
-    if(quoteEl) quoteEl.innerText = `"${randomQuote}"`;
+    if(quoteEl) quoteEl.innerText = `"${CONFIG.quotes[Math.floor(Math.random() * CONFIG.quotes.length)]}"`;
 
-    // 2. Set Today's Date header
+    // Hari ini
     const days = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
     const today = days[new Date().getDay()];
-    const todayEl = document.getElementById('today-date');
-    if(todayEl) todayEl.innerText = `Hari Ini: ${today}`;
+    document.getElementById('today-date').innerText = `HARI INI: ${today}`;
 
-    // 3. Render Schedule Grid
+    // Render Grid
     const grid = document.getElementById('schedule-grid');
-    if(grid) {
-        grid.innerHTML = CONFIG.schedule.map(item => {
-            const isToday = item.day === today;
-            return `
-                <div class="class-card ${isToday ? 'today' : ''}">
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <span class="day-label">${item.day}</span>
-                        <span class="course-code">${item.code}</span>
-                    </div>
-                    <h4>${item.subject}</h4>
-                    <div class="detail-row">🕒 ${item.time}</div>
-                    <div class="detail-row">📍 ${item.room}</div>
-                </div>
-            `;
-        }).join('');
-    }
+    grid.innerHTML = CONFIG.schedule.map(item => {
+        const isToday = item.day === today;
+        return `
+            <div class="class-card ${isToday ? 'today' : ''}">
+                <span class="day-label">${item.day}</span>
+                <h4>${item.subject}</h4>
+                <div class="detail-row">🕒 ${item.time}</div>
+                <div class="detail-row">📍 ${item.room}</div>
+                <div class="detail-row" style="opacity:0.5; font-size:0.7rem;">${item.code}</div>
+            </div>
+        `;
+    }).join('');
 }
 
 window.onload = init;
