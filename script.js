@@ -1,49 +1,36 @@
 const CONFIG = {
-    quotes: [
-        "Semangat terus kodingnya, Naufal! 🪻",
-        "Make it happen, make it count. 🔥",
-        "One semicolon at a time. ✨",
-        "Zero bugs, zero excuses. 🚀",
-        "Laily is rooting for you! ❤️"
-    ],
+    quotes: ["Algorithm is the poetry of logic.", "Make her proud.", "Informatics '25.", "Laily's favorite coder."],
     schedule: [
-        { day: 'Senin', code: 'CAK1LAB3', subject: 'KALKULUS LANJUT', time: '10:30 - 12:30', room: 'KU3.09.17' },
-        { day: 'Senin', code: 'CAK1IAB4', subject: 'ALGORITMA DAN PEMROGRAMAN 2', time: '12:30 - 14:30', room: 'KU3.09.17' },
-        { day: 'Selasa', code: 'CAK1IAB4', subject: 'ALGORITMA DAN PEMROGRAMAN 2', time: '06:30 - 09:30', room: 'LAB 0617' },
-        { day: 'Selasa', code: 'CAK1NAB3', subject: 'ARSITEKTUR KOMPUTER', time: '10:30 - 13:30', room: 'TULT-1509' },
-        { day: 'Selasa', code: 'CAK1LAB3', subject: 'KALKULUS LANJUT', time: '14:30 - 16:30', room: 'KU3.09.17' },
-        { day: 'Rabu', code: 'CAK1IAB4', subject: 'ALGORITMA DAN PEMROGRAMAN 2', time: '08:30 - 10:30', room: 'TULT-1509' },
-        { day: 'Rabu', code: 'CAK1MAB3', subject: 'MATRIKS DAN RUANG VEKTOR', time: '11:30 - 14:30', room: 'TULT-1510' },
-        { day: 'Kamis', code: 'CAK1KAB2', subject: 'ETIKA DALAM AI', time: '14:30 - 16:30', room: 'TULT-1509' },
-        { day: 'Jumat', code: 'CAK10AB3', subject: 'PEMODELAN BASIS DATA', time: '08:30 - 11:30', room: 'TULT-1509' },
-        { day: 'Jumat', code: 'UCKXADB2', subject: 'BAHASA INGGRIS', time: '14:30 - 16:30', room: 'TULT-1510' }
+        { day: 'Senin', subject: 'Kalkulus Lanjut', time: '10:30', room: 'KU3.09.17' },
+        { day: 'Senin', subject: 'Alpro 2', time: '12:30', room: 'KU3.09.17' },
+        { day: 'Selasa', subject: 'Alpro 2 (Lab)', time: '06:30', room: 'LAB 0617' },
+        { day: 'Selasa', subject: 'Arsitektur Komputer', time: '10:30', room: 'TULT-1509' },
+        { day: 'Selasa', subject: 'Kalkulus Lanjut', time: '14:30', room: 'KU3.09.17' },
+        { day: 'Rabu', subject: 'Alpro 2', time: '08:30', room: 'TULT-1509' },
+        { day: 'Rabu', subject: 'Matriks & Ruang Vektor', time: '11:30', room: 'TULT-1510' },
+        { day: 'Kamis', subject: 'Etika Dalam AI', time: '14:30', room: 'TULT-1509' },
+        { day: 'Jumat', subject: 'Pemodelan Basis Data', time: '08:30', room: 'TULT-1509' },
+        { day: 'Jumat', subject: 'Bahasa Inggris', time: '14:30', room: 'TULT-1510' }
     ]
 };
 
-function init() {
-    // Quote random
-    const quoteEl = document.getElementById('quote-display');
-    if(quoteEl) quoteEl.innerText = `"${CONFIG.quotes[Math.floor(Math.random() * CONFIG.quotes.length)]}"`;
-
-    // Hari ini
-    const days = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
-    const today = days[new Date().getDay()];
-    document.getElementById('today-date').innerText = `HARI INI: ${today}`;
-
-    // Render Grid
+function render() {
+    const today = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"][new Date().getDay()];
     const grid = document.getElementById('schedule-grid');
-    grid.innerHTML = CONFIG.schedule.map(item => {
-        const isToday = item.day === today;
-        return `
-            <div class="class-card ${isToday ? 'today' : ''}">
-                <span class="day-label">${item.day}</span>
-                <h4>${item.subject}</h4>
-                <div class="detail-row">🕒 ${item.time}</div>
-                <div class="detail-row">📍 ${item.room}</div>
-                <div class="detail-row" style="opacity:0.5; font-size:0.7rem;">${item.code}</div>
+    const quote = document.getElementById('quote-display');
+
+    quote.innerText = `"${CONFIG.quotes[Math.floor(Math.random() * CONFIG.quotes.length)]}"`;
+
+    grid.innerHTML = CONFIG.schedule.map(item => `
+        <div class="class-card ${item.day === today ? 'today' : ''}">
+            <span class="day-tag">${item.day.toUpperCase()}</span>
+            <h4>${item.subject}</h4>
+            <div class="info">
+                <span>🕒 ${item.time}</span>
+                <span>📍 ${item.room}</span>
             </div>
-        `;
-    }).join('');
+        </div>
+    `).join('');
 }
 
-window.onload = init;
+window.onload = render;
