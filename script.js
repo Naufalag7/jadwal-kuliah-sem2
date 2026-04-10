@@ -1,51 +1,38 @@
 const CONFIG = {
-    quotes: [
-        "Algorithm is the poetry of logic.",
-        "Make her proud, Naufal.",
-        "Building the future, one line at a time.",
-        "Laily's favorite informatics student.",
-        "Stay hungry, stay foolish."
-    ],
+    quotes: ["Algorithm is the poetry of logic.", "Make her proud, Naufal.", "Building the future.", "Informatics '25."],
     schedule: [
-        { day: 'Senin', subject: 'Kalkulus Lanjut', time: '10:30', room: 'KU3.09.17' },
-        { day: 'Senin', subject: 'Alpro 2', time: '12:30', room: 'KU3.09.17' },
-        { day: 'Selasa', subject: 'Alpro 2 (Lab)', time: '06:30', room: 'LAB 0617' },
-        { day: 'Selasa', subject: 'Arsitektur Komputer', time: '10:30', room: 'TULT-1509' },
-        { day: 'Selasa', subject: 'Kalkulus Lanjut', time: '14:30', room: 'KU3.09.17' },
-        { day: 'Rabu', subject: 'Alpro 2', time: '08:30', room: 'TULT-1509' },
-        { day: 'Rabu', subject: 'Matriks & Ruang Vektor', time: '11:30', room: 'TULT-1510' },
-        { day: 'Kamis', subject: 'Etika Dalam AI', time: '14:30', room: 'TULT-1509' },
-        { day: 'Jumat', subject: 'Pemodelan Basis Data', time: '08:30', room: 'TULT-1509' },
-        { day: 'Jumat', subject: 'Bahasa Inggris', time: '14:30', room: 'TULT-1510' }
+        { d: 'Senin', s: 'Kalkulus Lanjut', t: '10:30', r: 'KU3.09.17' },
+        { d: 'Senin', s: 'Alpro 2', t: '12:30', r: 'KU3.09.17' },
+        { d: 'Selasa', s: 'Alpro 2 (Lab)', t: '06:30', r: 'LAB 0617' },
+        { d: 'Selasa', s: 'Arsitektur Komputer', t: '10:30', r: 'TULT-1509' },
+        { d: 'Selasa', s: 'Kalkulus Lanjut', t: '14:30', r: 'KU3.09.17' },
+        { d: 'Rabu', s: 'Alpro 2', t: '08:30', r: 'TULT-1509' },
+        { d: 'Rabu', s: 'Matriks & Ruang Vektor', t: '11:30', r: 'TULT-1510' },
+        { d: 'Kamis', s: 'Etika Dalam AI', t: '14:30', r: 'TULT-1509' },
+        { d: 'Jumat', s: 'Pemodelan Basis Data', t: '08:30', r: 'TULT-1509' },
+        { d: 'Jumat', s: 'Bahasa Inggris', t: '14:30', r: 'TULT-1510' }
     ]
 };
 
-function render() {
+const render = () => {
     const today = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"][new Date().getDay()];
     const grid = document.getElementById('schedule-grid');
-    const quote = document.getElementById('quote-display');
+    const qDisp = document.getElementById('quote-display');
 
-    // Set Random Quote
-    if(quote) {
-        quote.innerText = CONFIG.quotes[Math.floor(Math.random() * CONFIG.quotes.length)];
-    }
-
-    // Render Grid with 3-Column Structure for CSS Grid
+    if(qDisp) qDisp.innerText = CONFIG.quotes[Math.floor(Math.random() * CONFIG.quotes.length)];
+    
     if(grid) {
-        grid.innerHTML = CONFIG.schedule.map(item => {
-            const isToday = item.day === today;
-            return `
-                <div class="class-card ${isToday ? 'today' : ''}">
-                    <span class="day-text">${item.day}</span>
-                    <span class="subject-text">${item.subject}</span>
-                    <div class="card-right">
-                        <div class="detail-row">🕒 <span>${item.time}</span></div>
-                        <div class="detail-row">📍 <span>${item.room}</span></div>
-                    </div>
+        grid.innerHTML = CONFIG.schedule.map(i => `
+            <div class="class-card ${i.d === today ? 'today' : ''}">
+                <span class="day-text">${i.d}</span>
+                <span class="subject-text">${i.s}</span>
+                <div class="card-right">
+                    <div class="detail-row">🕒 ${i.t}</div>
+                    <div class="detail-row">📍 ${i.r}</div>
                 </div>
-            `;
-        }).join('');
+            </div>
+        `).join('');
     }
-}
+};
 
 window.onload = render;
