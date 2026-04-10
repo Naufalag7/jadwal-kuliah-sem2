@@ -3,23 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#000000">
     <link rel="icon" href="logo.jpg" type="image/jpeg">
-    <title>Naufal's Schedule</title>
+    <link rel="manifest" href="manifest.json">
+    <title>Naufal's Workspace</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="glow"></div>
     <div class="container">
         <header class="header">
             <h1>Naufal Workspace</h1>
-            <p class="quote" id="quote-display">"Focus on the goal."</p>
+            <p class="quote" id="quote-display">"Loading greatness..."</p>
         </header>
 
         <section class="schedule-section">
             <div class="section-label">
                 <span class="red-line"></span>
-                <h3>Active Schedule</h3>
+                <h3>Active <span class="highlight">Schedule</span></h3>
             </div>
             <div id="schedule-grid" class="grid"></div>
         </section>
@@ -29,6 +30,12 @@
             <p class="lily">🪻 L.H.S</p>
         </footer>
     </div>
+    
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js');
+        }
+    </script>
     <script src="script.js" defer></script>
 </body>
 </html>

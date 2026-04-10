@@ -1,10 +1,10 @@
 :root {
-    --bg: #050505;
-    --card: #0c0c0c;
+    --bg: #000000;
+    --card: #0d0d0d;
     --accent: #ff0000;
-    --border: rgba(255, 255, 255, 0.05);
+    --border: rgba(255, 255, 255, 0.06);
     --text: #ffffff;
-    --text-dim: #777;
+    --text-dim: #888;
 }
 
 * { 
@@ -19,126 +19,113 @@ body {
     display: flex;
     justify-content: center;
     min-height: 100vh;
-    padding: env(safe-area-inset-top) 20px 40px;
-    line-height: 1.4;
-}
-
-/* Subtle accent glow */
-.glow {
-    position: fixed;
-    top: 0; right: 0;
-    width: 100%; height: 100%;
-    background: radial-gradient(circle at 90% 10%, rgba(255, 0, 0, 0.05), transparent 50%);
-    pointer-events: none;
-    z-index: 0;
+    /* Optimasi Padding untuk Samsung S25 Ultra */
+    padding-top: calc(env(safe-area-inset-top) + 50px);
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-bottom: 60px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
 }
 
 .container {
     width: 100%;
-    max-width: 500px;
-    z-index: 1;
+    max-width: 480px;
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 40px;
 }
 
-/* Header Compact */
+/* Header Section */
 .header h1 {
-    font-size: 1.8rem;
+    font-size: 1.7rem;
     font-weight: 900;
-    letter-spacing: -1.5px;
+    letter-spacing: -1px;
 }
 
 .quote {
-    color: var(--accent);
+    color: var(--text-dim);
     font-size: 0.85rem;
-    font-weight: 700;
+    font-weight: 500;
     margin-top: 4px;
-    letter-spacing: 0.5px;
 }
 
-/* Redline Section Optimization */
+/* Active Schedule Section */
 .section-label {
     display: flex;
     align-items: center;
     gap: 12px;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .red-line {
     height: 2px;
-    width: 30px;
+    width: 25px;
     background: var(--accent);
-    box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
     border-radius: 2px;
 }
 
 .section-label h3 {
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 1.5px;
     color: var(--text-dim);
+    font-weight: 600;
 }
 
-/* Grid & Cards (Compact & Neat) */
+.highlight {
+    color: var(--accent);
+}
+
+/* Grid & Cards (Ultra Smooth) */
 .grid {
     display: grid;
     gap: 12px;
+    contain: content;
 }
 
 .class-card {
     background: var(--card);
     border: 1px solid var(--border);
-    border-radius: 18px;
-    padding: 18px 22px;
-    transition: 0.2s cubic-bezier(0.2, 0, 0.2, 1);
-    position: relative;
-    overflow: hidden;
+    border-radius: 20px;
+    padding: 20px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform 0.2s cubic-bezier(0.2, 0, 0.2, 1);
+    /* Paksa GPU rendering untuk 120Hz */
+    transform: translateZ(0);
 }
 
 .class-card.today {
-    border-color: rgba(255, 0, 0, 0.3);
+    border-color: rgba(255, 0, 0, 0.25);
 }
 
-/* Redline highlight inside active card */
-.class-card.today::before {
-    content: '';
-    position: absolute;
-    left: 0; top: 25%;
-    height: 50%;
-    width: 3px;
-    background: var(--accent);
-    box-shadow: 0 0 10px var(--accent);
-    border-radius: 0 4px 4px 0;
-}
-
-.day-tag {
-    font-size: 0.6rem;
-    font-weight: 900;
-    color: var(--accent);
-    margin-bottom: 4px;
-    display: block;
-}
-
-.class-card h4 {
+.card-content h4 {
     font-size: 1.05rem;
     font-weight: 700;
-    margin-bottom: 8px;
+    margin-bottom: 4px;
 }
 
 .info {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: var(--text-dim);
     display: flex;
-    gap: 15px;
+    gap: 12px;
 }
 
-.info span { display: flex; align-items: center; gap: 6px; }
+.today-badge {
+    color: var(--accent);
+    font-size: 0.75rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
 
-/* Footer */
+/* Footer & Lily Tag */
 .footer {
     text-align: center;
-    margin-top: 20px;
+    margin-top: 10px;
     font-size: 0.75rem;
     color: var(--text-dim);
 }
@@ -148,4 +135,8 @@ body {
     color: var(--accent);
     font-weight: 800;
     letter-spacing: 1px;
+}
+
+@media (max-width: 600px) {
+    .container { gap: 30px; }
 }
