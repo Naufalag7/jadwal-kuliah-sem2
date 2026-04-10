@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <meta name="theme-color" content="#000000">
-    <link rel="icon" href="logo.jpg?v=4" type="image/jpeg">
+    <link rel="icon" href="logo.jpg?v=5" type="image/jpeg">
+    <link rel="manifest" href="manifest.json">
     <title>Naufal Workspace</title>
-    <link rel="stylesheet" href="style.css?v=4">
+    <link rel="stylesheet" href="style.css?v=5">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -24,6 +25,13 @@
             <p class="lily">🪻 L.H.S</p>
         </footer>
     </div>
-    <script src="script.js?v=4" defer></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js').then(reg => reg.update());
+            });
+        }
+    </script>
+    <script src="script.js?v=5" defer></script>
 </body>
 </html>
