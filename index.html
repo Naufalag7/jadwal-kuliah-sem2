@@ -16,7 +16,7 @@
     <div class="container">
         <header class="header">
             <h1>Naufal Workspace</h1>
-            <p class="quote" id="quote-display">"Algorithm is the poetry of logic."</p>
+            <p class="quote" id="quote-display">"Loading greatness..."</p>
         </header>
 
         <section class="schedule-section">
@@ -37,7 +37,18 @@
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('./sw.js')
-                    .then(reg => console.log('SW Registered'))
+                    .then(reg => {
+                        console.log('SW Registered');
+                        // Update otomatis jika ada perubahan
+                        reg.onupdatefound = () => {
+                            const installingWorker = reg.installing;
+                            installingWorker.onstatechange = () => {
+                                if (installingWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                                    window.location.reload();
+                                }
+                            };
+                        };
+                    })
                     .catch(err => console.log('SW Error', err));
             });
         }

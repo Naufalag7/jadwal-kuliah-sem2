@@ -4,9 +4,10 @@
   "id": "/Jadwal-Kuliah/",
   "start_url": "./index.html",
   "display": "standalone",
-  "orientation": "portrait",
   "background_color": "#000000",
   "theme_color": "#000000",
+  "description": "Jadwal Kuliah S1 Informatika Naufal",
+  "orientation": "portrait",
   "icons": [
     {
       "src": "logo.jpg",
@@ -19,6 +20,12 @@
       "sizes": "512x512",
       "type": "image/jpeg",
       "purpose": "any"
+    },
+    {
+      "src": "logo.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "maskable"
     }
   ]
 }

@@ -1,4 +1,4 @@
-const CACHE_NAME = 'naufal-v3';
+const CACHE_NAME = 'naufal-workspace-v5'; // Versi baru untuk force update
 const assets = [
   './',
   './index.html',
@@ -14,7 +14,7 @@ self.addEventListener('install', (e) => {
       return cache.addAll(assets);
     })
   );
-  self.skipWaiting();
+  self.skipWaiting(); // Langsung aktifkan SW baru
 });
 
 self.addEventListener('activate', (e) => {
@@ -25,7 +25,7 @@ self.addEventListener('activate', (e) => {
       );
     })
   );
-  self.clients.claim();
+  self.clients.claim(); // Langsung ambil kendali halaman
 });
 
 self.addEventListener('fetch', (e) => {
