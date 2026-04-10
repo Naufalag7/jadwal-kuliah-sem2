@@ -1,5 +1,5 @@
 const CACHE_NAME = 'naufal-v10';
-const assets = ['./', './index.html', './style.css', './script.js', './logo.jpg', './manifest.json'];
+const assets = ['./', './index.html', './style.css', './script.js', './logo.png', './manifest.json'];
 
 self.addEventListener('install', (e) => {
     e.waitUntil(caches.open(CACHE_NAME).then((c) => c.addAll(assets)));
