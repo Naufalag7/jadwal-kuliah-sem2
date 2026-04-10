@@ -1,17 +1,26 @@
-// Ubah dari 'naufal-v1' ke 'naufal-v2'
-const CACHE_NAME = 'naufal-v2'; 
-
+const CACHE_NAME = 'naufal-v2';
 const assets = [
   './',
   './index.html',
   './style.css',
   './script.js',
-  './logo.jpg' // Pastikan namanya persis logo.jpg
+  './logo.jpg'
 ];
 
 self.addEventListener('install', (e) => {
   e.waitUntil(
     caches.open(CACHE_NAME).then((cache) => cache.addAll(assets))
+  );
+});
+
+// Menghapus cache lama agar logo & jadwal terupdate otomatis
+self.addEventListener('activate', (e) => {
+  e.waitUntil(
+    caches.keys().then((keys) => {
+      return Promise.all(
+        keys.filter((key) => key !== CACHE_NAME).map((key) => caches.delete(key))
+      );
+    })
   );
 });
 

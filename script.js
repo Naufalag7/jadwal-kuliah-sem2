@@ -1,5 +1,11 @@
 const CONFIG = {
-    quotes: ["Algorithm is the poetry of logic.", "Make her proud.", "Informatics '25.", "Laily's favorite coder."],
+    quotes: [
+        "Algorithm is the poetry of logic.",
+        "Make her proud, Naufal.",
+        "Building the future, one line at a time.",
+        "Laily's favorite informatics student.",
+        "Stay hungry, stay foolish."
+    ],
     schedule: [
         { day: 'Senin', subject: 'Kalkulus Lanjut', time: '10:30', room: 'KU3.09.17' },
         { day: 'Senin', subject: 'Alpro 2', time: '12:30', room: 'KU3.09.17' },
@@ -19,18 +25,27 @@ function render() {
     const grid = document.getElementById('schedule-grid');
     const quote = document.getElementById('quote-display');
 
-    quote.innerText = `"${CONFIG.quotes[Math.floor(Math.random() * CONFIG.quotes.length)]}"`;
+    // Set Random Quote
+    if(quote) {
+        quote.innerText = CONFIG.quotes[Math.floor(Math.random() * CONFIG.quotes.length)];
+    }
 
-    grid.innerHTML = CONFIG.schedule.map(item => `
-        <div class="class-card ${item.day === today ? 'today' : ''}">
-            <span class="day-tag">${item.day.toUpperCase()}</span>
-            <h4>${item.subject}</h4>
-            <div class="info">
-                <span>🕒 ${item.time}</span>
-                <span>📍 ${item.room}</span>
-            </div>
-        </div>
-    `).join('');
+    // Render Grid with 3-Column Structure for CSS Grid
+    if(grid) {
+        grid.innerHTML = CONFIG.schedule.map(item => {
+            const isToday = item.day === today;
+            return `
+                <div class="class-card ${isToday ? 'today' : ''}">
+                    <span class="day-text">${item.day}</span>
+                    <span class="subject-text">${item.subject}</span>
+                    <div class="card-right">
+                        <div class="detail-row">🕒 <span>${item.time}</span></div>
+                        <div class="detail-row">📍 <span>${item.room}</span></div>
+                    </div>
+                </div>
+            `;
+        }).join('');
+    }
 }
 
 window.onload = render;
